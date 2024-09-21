@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #606060;
+            margin: 0;
+            position: relative; 
+        }
+
+        .btn {
+            display: inline-block;
+            background: #84afff;
+            transition: background 0.5s;
+        }
+        .btn:hover {
+            background: #5277fb;
+            text-decoration: none;
+        }
+
+        .outer-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            position: relative; 
+        }
+        .payment-method {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Loader styles */
+        #loader {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;  
+        }
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Overlay styles */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);  
+            z-index: 50;  
+        }
+    </style>
+</head>
+<body>
+
+    <div class="outer-container">
+        <div class="payment-container">
+            <h2>Payment Method</h2>
+            
+            <div id="credit-card" class="payment-method">
+                <h3>Credit Card</h3>
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" placeholder="Enter card number" required>
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" placeholder="Enter CVV" required>
+            </div>
+
+            <div id="upi" class="payment-method hidden">
+                <h3>UPI</h3>
+                <label for="upi-id">UPI ID:</label>
+                <input type="text" id="upi-id" placeholder="Enter UPI ID" required>
+            </div>
+
+            <button class="btn" id="toggle-button">Switch to UPI</button>
+            <button class="btn" id="pay-button">Pay Now</button>
+        </div>
+        
+        <div id="overlay"></div>
+        <div id="loader">
+            <div class="spinner"></div>
+            <p>Processing Payment...</p>
+        </div>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggle-button');
+        const creditCard = document.getElementById('credit-card');
+        const upi = document.getElementById('upi');
+        const loader = document.getElementById('loader');
+        const overlay = document.getElementById('overlay');
+
+        toggleButton.addEventListener('click', () => {
+            creditCard.classList.toggle('hidden');
+            upi.classList.toggle('hidden');
+            toggleButton.textContent = toggleButton.textContent === 'Switch to UPI' ? 'Switch to Credit Card' : 'Switch to UPI';
+        });
+
+        document.getElementById('pay-button').addEventListener('click', () => {
+            overlay.style.display = 'block';
+            loader.style.display = 'block'; 
+
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 3000);
+            setTimeout(() => {
+                
+                alert("Thank You For The Purchase !!!");
+                window.location.href = 'index.html';
+                overlay.style.display = 'none'; 
+            }, 3250); 
+        });
+    </script>
+</body>
+</html>
