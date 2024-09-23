@@ -97,10 +97,10 @@
     </style>
 </head>
 <body>
-
+    <script src="./src/js/script.js"></script>
     <div class="outer-container">
         <div class="payment-container">
-            <h2>Payment Method</h2>
+            <h2>Payment Required : $<span id="amt"></h2>
             
             <div id="credit-card" class="payment-method">
                 <h3>Credit Card</h3>
@@ -125,11 +125,16 @@
         <div id="overlay"></div>
         <div id="loader">
             <div class="spinner"></div>
-            <p>Processing Payment...</p>
+            <p>Processing...</p>
         </div>
     </div>
 
     <script>
+
+        var storedValue = localStorage.getItem("Total_val");
+        if (storedValue) {
+            document.getElementById('amt').innerText = storedValue;
+        }
         const toggleButton = document.getElementById('toggle-button');
         const creditCard = document.getElementById('credit-card');
         const upi = document.getElementById('upi');
@@ -152,6 +157,7 @@
             setTimeout(() => {
                 
                 alert("Thank You For The Purchase !!!");
+                localStorage.clear();
                 window.location.href = 'index.html';
                 overlay.style.display = 'none'; 
             }, 3250); 

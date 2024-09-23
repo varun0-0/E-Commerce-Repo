@@ -30,71 +30,78 @@
             </div>
         </div>
 
-        <div class="small container cart-page">
+        <div id="hid_content" style="display: none;">
+            <div class="formPage">
+                <h2>Add items to view your cart.</h2>
+                <div class="btn"><a href="./products.html">Shop</a></div>
+            </div>
+        </div>
+
+        <div id="main_content" class="small container cart-page">
         <table>
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
             </tr>
-            <tr>
+            <tr id="row1">
                 <td>
                     <div class="cart-info">
                         <img src="./images/products/product-5.webp">
                         <div>
                             <p>Adventure Hoodie</p>
                             <small>Price: $163.00</small>
-                            <a href="">Remove</a>
+                            <a onclick="removerow('row1','163.00')">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1" style="color:black"></td>
-                <td>$163.00</td>
+                <td><input type="number" value="1" style="color:black" id="hoodie" min="1" step="1" onchange="disp('hoodie','163.00')"></td>
+                <td>$<span id="163.00">163.00</td>
             </tr>
 
-            <tr>
+            <tr id="row2">
                 <td>
                     <div class="cart-info">
                         <img src="./images/products/product-1.webp">
                         <div>
                             <p>Sweatpants</p>
                             <small>Price: $60.00</small>
-                            <a href="">Remove</a>
+                            <a onclick="removerow('row2', '60.00')">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1" style="color:black"></td>
-                <td>$60.00</td>
+                <td><input id="pants" type="number" value="1" style="color:black" min="1" step="1" onchange="disp('pants','60.00')"></td>
+                <td>$<span id="60.00">60.00</td>
             </tr>
 
-            <tr></tr>
+            <tr id="row3">
                 <td>
                     <div class="cart-info">
                         <img src="./images/products/product-6.webp">
                         <div>
                             <p>Cropped Top Bra</p>
                             <small>Price: $57.99</small>
-                            <a href="">Remove</a>
+                            <a onclick="removerow('row3','57.99')">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1" style="color:black"></td>
-                <td>$57.99</td>
+                <td><input id="Tbra" type="number" value="1" style="color:black" min="1" step="1" onchange="disp('Tbra','57.99')"></td>
+                <td>$<span id="57.99">57.99</td>
             </tr>
 
-            <tr>
+            <tr id="row4">
                 <td>
                     <div class="cart-info">
                         <img src="./images/products/product-11.webp">
                         <div>
                             <p>T-Shirt For Women</p>
                             <small>Price: $60.99</small>
-                            <a href="">Remove</a>
+                            <a onclick="removerow('row4','60.99')">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td ><input type="number" value="1" style="color:black"></td>
-                <td>$60.99</td>
+                <td ><input id="Tshirt" type="number" value="1" style="color:black" min="1" step="1" onchange="disp('Tshirt','60.99')"></td>
+                <td>$<span id="60.99">60.99</td>
             </tr>
         </table>
 
@@ -102,15 +109,15 @@
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>$341.96</td>
+                    <td>$<span id="sub">341.98</td>
                 </tr>
                 <tr>
                     <td>Tax</td>
-                    <td>$30.02</td>
+                    <td>$20.00</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>$372.00</td>
+                    <td>$<span id="total">361.96</td>
                 </tr>
                 
             </table>
@@ -122,7 +129,7 @@
                     window.location.href = 'index.html'; 
                 }
             </script>
-            <a style="float: right;" class="btn" href="payment.html">Checkout</a>
+            <a style="float: right;" class="btn" href="payment.html" onclick="chek_total()">Checkout</a>
         </div>
     </div>
 

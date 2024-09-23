@@ -51,3 +51,61 @@ smallImg[3].onclick = function () {
     prodImg.src = smallImg[3].src;
 }
 
+
+var total = 0;
+
+function tots()
+{
+    var sub_total =  
+    parseFloat(document.getElementById('163.00').innerHTML) +
+    parseFloat(document.getElementById('60.00').innerHTML)  +
+    parseFloat(document.getElementById('57.99').innerHTML)  +
+    parseFloat(document.getElementById('60.99').innerHTML)  ;
+    
+    document.getElementById('sub').innerHTML = sub_total.toFixed(2);
+
+    total = (parseFloat(20) + sub_total).toFixed(2);
+
+    document.getElementById('total').innerHTML = total;
+}
+
+function removerow(val,id) 
+{
+    var rmved_amt = parseFloat(document.getElementById(id).innerHTML);
+
+    document.getElementById(val).remove();
+    var sub_total = parseFloat(document.getElementById('sub').innerHTML) - rmved_amt;
+    document.getElementById('sub').innerHTML = sub_total.toFixed(2);
+    total = (parseFloat(20) + sub_total).toFixed(2);
+    document.getElementById('total').innerHTML = total;
+
+    if(total - 20.00 == 0)
+    {
+        document.getElementById('main_content').style.visibility = "hidden";
+        document.getElementById('hid_content').style.display = "block";
+    }
+}
+
+function disp(pt, val)
+{
+    var z = document.getElementById(pt);
+    var x = document.getElementById(val);
+    var v = parseFloat(val);
+  
+    x.innerHTML = (z.value * v).toFixed(2);
+    tots();
+}
+
+function chek_total() 
+{
+    
+    total ? localStorage.setItem("Total_val", total) : localStorage.setItem("Total_val", 361.96)
+    // if(total)
+    // {
+    //     localStorage.setItem("Total_val", total);
+    // }
+    // else {
+    //     localStorage.setItem("Total_val", 361.96);
+    // } 
+}
+    
